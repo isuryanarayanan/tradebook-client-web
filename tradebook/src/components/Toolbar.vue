@@ -1,4 +1,3 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
   <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -58,8 +57,10 @@
                   'px-3 py-2 rounded-md text-sm font-medium',
                 ]"
                 :aria-current="item.current ? 'page' : undefined"
-                >{{ item.name }}</a
+                @click="navigate(item.view)"
               >
+                {{ item.name }}
+              </a>
             </div>
           </div>
         </div>
@@ -192,6 +193,7 @@
             'block px-3 py-2 rounded-md text-base font-medium',
           ]"
           :aria-current="item.current ? 'page' : undefined"
+          @click="navigate(item.view)"
           >{{ item.name }}</a
         >
       </div>
@@ -201,6 +203,7 @@
 
 <script>
 import { ref } from "vue";
+import { mapGetters } from "vuex";
 import {
   Disclosure,
   DisclosureButton,
@@ -211,13 +214,6 @@ import {
   MenuItems,
 } from "@headlessui/vue";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/vue/outline";
-
-const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-];
 
 export default {
   components: {
@@ -232,11 +228,18 @@ export default {
     MenuIcon,
     XIcon,
   },
+  computed: {
+    ...mapGetters({ navigation: "config/getPossibleNavigations" }),
+  },
+  methods: {
+    navigate: function (params) {
+      this.$store.dispatch("config/navigator", params);
+    },
+  },
   setup() {
     const open = ref(false);
 
     return {
-      navigation,
       open,
     };
   },
