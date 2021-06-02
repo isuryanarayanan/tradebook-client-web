@@ -30,7 +30,7 @@ export default {
           is_authenticated: true,
           is_authorized: true,
         });
-        //dispatch("config/viewCompiler", null, { root: true });
+        dispatch("config/viewCompiler", null, { root: true });
       }
     });
     return promise;
@@ -55,10 +55,14 @@ export default {
       "requests",
       {
         method: "POST",
-        url: { service: "auth_service", points: ["BASE", "REF_TOKEN"] },
+        url: {
+          module: "auth",
+          service: "authenticator",
+          points: ["BASE", "REF_TOKEN"],
+        },
         headers: [{ name: "Content-Type", value: "Application/json" }],
         body: {
-          refresh: getters["get_tokens"].refresh_token,
+          refresh: getters["getTokens"].refresh_token,
         },
       },
       { root: true }
@@ -70,7 +74,7 @@ export default {
         commit("set_tokens", {
           data: {
             access_token: response.access,
-            refresh_token: getters["get_tokens"].refresh_token,
+            refresh_token: getters["getTokens"].refresh_token,
           },
         });
         commit("set_flags", {
@@ -87,12 +91,16 @@ export default {
       "requests",
       {
         method: "GET",
-        url: { service: "auth_service", points: ["BASE", "VAL_TOKEN"] },
+        url: {
+          module: "auth",
+          service: "authenticator",
+          points: ["BASE", "VAL_TOKEN"],
+        },
         headers: [
           { name: "Content-Type", value: "Application/json" },
           {
             name: "Authorization",
-            value: "Bearer " + getters["get_tokens"].access_token,
+            value: "Bearer " + getters["getTokens"].access_token,
           },
         ],
         body: {},
@@ -107,6 +115,7 @@ export default {
           is_authenticated: true,
           is_authorized: true,
         });
+
       }
     });
     return promise;

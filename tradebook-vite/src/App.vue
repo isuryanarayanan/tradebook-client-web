@@ -3,7 +3,6 @@
     <Toolbar />
     <component v-bind:is="getCurrentView" />
   </div>
-
 </template>
 
 <script>
@@ -27,7 +26,9 @@ export default {
     AuthView,
   },
   mounted: function () {
-    this.$store.dispatch("config/viewCompiler");
+    this.$store.dispatch("auth/VAL_TOKENS").then(() => {
+      this.$store.dispatch("config/viewCompiler");
+    });
   },
 };
 </script>
