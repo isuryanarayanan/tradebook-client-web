@@ -12,7 +12,9 @@ const app = createApp(App);
 
 app.use(Toast, {
   verticalPosition: "bottom",
-  duration: 1500,
+  duration: 3500,
+  className: "wk-info",
+  closeable: true,
 });
 
 app.use(store);

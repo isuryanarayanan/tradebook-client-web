@@ -81,6 +81,8 @@ export default {
           is_authenticated: true,
           is_authorized: true,
         });
+
+        dispatch("config/viewCompiler", null, { root: true });
       } else {
         dispatch("LOGOUT");
       }
@@ -115,7 +117,6 @@ export default {
           is_authenticated: true,
           is_authorized: true,
         });
-
       }
     });
     return promise;

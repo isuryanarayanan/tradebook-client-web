@@ -6,7 +6,8 @@
 export default {
   name: "TradeView",
   components: {},
+  mounted: function () {},
 };
 </script>
 
-<style lang="scss"></style>
+<style></style>

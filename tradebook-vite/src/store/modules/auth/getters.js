@@ -5,8 +5,9 @@ export default {
       let point = "";
       key.points.map((pt) => {
         if (pt == "BASE") {
-          console.log(rootGetters);
           point = point + rootGetters["config/getServerBase"] + "/";
+        } else if (pt[0] == "$") {
+          point = point + pt.slice(1) + "/";
         } else {
           point = point + service[pt] + "/";
         }
