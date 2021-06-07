@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <div class="app bg-gray-900">
     <Toolbar />
     <component v-bind:is="getCurrentView" />
   </div>

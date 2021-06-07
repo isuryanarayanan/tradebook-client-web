@@ -16,7 +16,7 @@
         >
           <h2
             class="
-              text-center text-4xl text-indigo-900
+              text-center text-4xl text-indigo-400
               font-display font-semibold
               lg:text-left
               xl:text-5xl xl:text-bold
@@ -36,7 +36,9 @@
                     text-lg
                     py-2
                     border-b border-gray-300
+										bg-gray-900
                     focus:outline-none
+										text-gray-100
                     focus:border-indigo-500
                   "
                   type=""
@@ -69,10 +71,12 @@
                     text-lg
                     py-2
                     border-b border-gray-300
+										bg-gray-900
+										text-gray-100
                     focus:outline-none
                     focus:border-indigo-500
                   "
-                  type=""
+                  type="password"
                   placeholder="Enter your password"
                   v-model="password"
                 />
